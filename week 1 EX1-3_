@@ -1,0 +1,525 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "ce116b25-a149-43ed-a080-4f0475e4f9d3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "7.777777777777778\n"
+     ]
+    }
+   ],
+   "source": [
+    "T_f = 46\n",
+    "T_c = 5*(T_f - 32)/9\n",
+    "print(T_c)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c7fa9bd7-81f9-49c0-955e-adcb82fa125b",
+   "metadata": {},
+   "source": [
+    "EX 01.1 \n",
+    "1-Define variables\n",
+    "2-print to see result"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "b066a53a-808c-4ff7-bec9-dcf86d6d8217",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "536.0666666666667\n"
+     ]
+    }
+   ],
+   "source": [
+    "principal = 172000\n",
+    "boe_rate = 2.25\n",
+    "rate_over_boe = 1.49\n",
+    "\n",
+    "annual_rate = boe_rate + rate_over_boe\n",
+    "\n",
+    "interest = principal * (annual_rate / 100)/12\n",
+    "\n",
+    "print(interest)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "580d3016-29ba-4e56-8542-d5d682987aa5",
+   "metadata": {},
+   "source": [
+    "EX 01.2\n",
+    "1- define variables\n",
+    "2- formulas\n",
+    "3- print for result"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "b86b2e0c-34ba-4da8-9ac5-e5287555f2e2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "need improvement\n"
+     ]
+    }
+   ],
+   "source": [
+    "score= 54\n",
+    "if score>= 85:\n",
+    "    print(\"Excellent\")\n",
+    "if score>= 76.5 and score<85:\n",
+    "    print(\"very good\")\n",
+    "if score>= 64 and score<76.5:\n",
+    "    print(\"good\")\n",
+    "if score>= 40 and score<64:\n",
+    "    print(\"need improvement\")\n",
+    "if score <40:\n",
+    "    print(\"Did you try?\")\n",
+    "if score >100 or score<0:\n",
+    "    print(\"error\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "12ab02be-a43a-4a78-b457-a3c782b2c04b",
+   "metadata": {},
+   "source": [
+    "EX 02.1 \n",
+    "1- define variables\n",
+    "2- conditions -> use if \n",
+    "\n",
+    "mistakes\n",
+    "need : after if and indent on next line\n",
+    "need to put variable before each comparison operative (Score before < )\n",
+    "need to put \" \" otherwise itll think its a variable "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "591dea5f-4268-4511-807e-e9a264c76ae2",
+   "metadata": {},
+   "source": [
+    "EX 02.2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "77fa10b7-ec34-4f73-a6a4-ccbbbff70a0f",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Approximate root: 1.1568355560302734\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def func(x):\n",
+    "    return x**5 / 10 + x**3 - 10*x**2 + 4*x + 7\n",
+    "\n",
+    "x0 = 0.0\n",
+    "x1 = 2.0\n",
+    "\n",
+    "for n in range(20):\n",
+    "    x_mid = (x0 + x1) / 2\n",
+    "\n",
+    "    if func(x0) * func(x_mid) < 0:\n",
+    "        x1 = x_mid\n",
+    "    else:\n",
+    "        x0 = x_mid\n",
+    "\n",
+    "print(\"Approximate root:\", x_mid)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "c39c30d7-78aa-499b-a238-2f81047e8e51",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Approximate root: 1.1568354368209839\n",
+      "Function value: 3.9180508970559913e-07\n",
+      "Number of iterations: 23\n"
+     ]
+    }
+   ],
+   "source": [
+    "def func(x):\n",
+    "    return x**5 / 10 + x**3 - 10*x**2 + 4*x + 7\n",
+    "\n",
+    "x0 = 0.0\n",
+    "x1 = 2.0\n",
+    "counter = 0\n",
+    "f = 1  # Start above the tolerance\n",
+    "\n",
+    "while abs(f) >= 1e-6:\n",
+    "    x_mid = (x0 + x1) / 2\n",
+    "    f = func(x_mid)\n",
+    "\n",
+    "    if abs(f) < 1e-6:\n",
+    "        break\n",
+    "\n",
+    "    if func(x0) * f < 0:\n",
+    "        x1 = x_mid\n",
+    "    else:\n",
+    "        x0 = x_mid\n",
+    "\n",
+    "    counter += 1\n",
+    "\n",
+    "print(\"Approximate root:\", x_mid)\n",
+    "print(\"Function value:\", f)\n",
+    "print(\"Number of iterations:\", counter)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "41432165-fc68-43d5-adcf-314f9944b956",
+   "metadata": {},
+   "source": [
+    "EX 02.2\n",
+    "1- define function\n",
+    "2-define variables\n",
+    "3- create loop and set range\n",
+    "3-create loop and set range and counter\n",
+    "4- options - if \n",
+    "5-print results\n",
+    "\n",
+    "mistakes\n",
+    "need to define function\n",
+    "for- need: and indent after \n",
+    "print- need comma between quote and variable\n",
+    "no indents for statements\n",
+    "abs for magnitude\n",
+    "put counter at start of loop and define counter\n",
+    "use assert for tests"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "e1188335-3e8f-47a3-86bb-42ffe4fe2e82",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Approximation: 2.4999999907944286\n",
+      "Absolute error: 9.205571416259772e-09\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "import math\n",
+    "\n",
+    "x = -0.84\n",
+    "approx = 0\n",
+    "\n",
+    "for n in range(100):\n",
+    "    term = ((-1)**n * math.factorial(2*n)\n",
+    "            / (4**n * math.factorial(n)**2)) * x**n\n",
+    "    approx = approx + term\n",
+    "\n",
+    "error = abs(approx - 2.5)\n",
+    "\n",
+    "assert error >= 0\n",
+    "assert error <= 1.0e-5\n",
+    "\n",
+    "print(\"Approximation:\", approx)\n",
+    "print(\"Absolute error:\", error)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "b62ede08-119a-485f-9e4c-97cac2261e51",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Approximation: 2.4999913101214295\n",
+      "Absolute error: 8.689878570500298e-06\n",
+      "Number of terms: 62\n"
+     ]
+    }
+   ],
+   "source": [
+    "import math\n",
+    "\n",
+    "x = -0.84\n",
+    "approx = 0\n",
+    "n = 0\n",
+    "error = float(\"inf\")\n",
+    "\n",
+    "while error >= 1e-5:\n",
+    "    term = ((-1)**n * math.factorial(2*n)\n",
+    "            / (4**n * math.factorial(n)**2)) * x**n\n",
+    "\n",
+    "    approx = approx + term\n",
+    "    error = abs(approx - 2.5)\n",
+    "    n += 1\n",
+    "\n",
+    "assert error >= 0\n",
+    "assert error <= 1.0e-5\n",
+    "\n",
+    "print(\"Approximation:\", approx)\n",
+    "print(\"Absolute error:\", error)\n",
+    "print(\"Number of terms:\", n)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5474a2e6-2710-40aa-9584-a7a8f7c950a0",
+   "metadata": {},
+   "source": [
+    "EX 02.3\n",
+    "1- import math\n",
+    "2- set variables\n",
+    "3-while/for loop\n",
+    "4-calculate error\n",
+    "5-add counter\n",
+    "6-print results\n",
+    "\n",
+    "mistakes \n",
+    "need to initialise error before\n",
+    "start at infinity to guarantee the loop starting\n",
+    "import math - to use factorials\n",
+    "approx is used to store the approximation and is set to 0 at the start\n",
+    "need to use n+= 1 to increase it by one each iteration"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "d3554423-f7b4-4f2d-8ab5-4a26f8b7c7f0",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "False\n"
+     ]
+    }
+   ],
+   "source": [
+    "a=100\n",
+    "b=0.1\n",
+    "c=0.2\n",
+    "\n",
+    "d0=a*b+a*c\n",
+    "d1=a*(b+c)\n",
+    "print (d0==d1)\n",
+    "\n",
+    "assert d0 == 30.0\n",
+    "assert d1 != 30.0\n",
+    "assert d0 != d1\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b5d9fd1b-fb1c-4bac-a28d-324848125bdf",
+   "metadata": {},
+   "source": [
+    "EX 03.1\n",
+    "1- set variables\n",
+    "2-formulas\n",
+    "3-print result checking if equal\n",
+    "4-tests\n",
+    "\n",
+    "mistakes\n",
+    "it is false because of floating point rounding errors\n",
+    "use math.isclose to avoid rounding errors giving false"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "dabd8944-20c8-4940-b081-6d16b449f909",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Case (a)\n",
+      "Compact: 65944160.60120103\n",
+      "Expanded: 65944160.601201\n",
+      "\n",
+      "Case (b)\n",
+      "Compact: 9.999999999999788e-07\n",
+      "Expanded: 9.958166629076004e-07\n",
+      "Analytical answer: 9.999999999999788e-07\n",
+      "Absolute difference: 4.183337092378376e-09\n",
+      "Relative error of expanded form: 0.004183337092378465\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "# Case (a)\n",
+    "x = 10\n",
+    "y = 10.1\n",
+    "\n",
+    "\n",
+    "f0 = (x + y)**6\n",
+    "\n",
+    "# Expanded form\n",
+    "f1 = (x**6 + 6*x**5*y + 15*x**4*y**2\n",
+    "      + 20*x**3*y**3 + 15*x**2*y**4\n",
+    "      + 6*x*y**5 + y**6)\n",
+    "\n",
+    "print(\"Case (a)\")\n",
+    "print(\"Compact:\", f0)\n",
+    "print(\"Expanded:\", f1)\n",
+    "\n",
+    "# Case (b)\n",
+    "x = 10\n",
+    "y = -10.1\n",
+    "\n",
+    "f0 = (x + y)**6\n",
+    "\n",
+    "f1 = (x**6 + 6*x**5*y + 15*x**4*y**2\n",
+    "      + 20*x**3*y**3 + 15*x**2*y**4\n",
+    "      + 6*x*y**5 + y**6)\n",
+    "\n",
+    "print(\"\\nCase (b)\")\n",
+    "print(\"Compact:\", f0)\n",
+    "print(\"Expanded:\", f1)\n",
+    "\n",
+    "# Analytical answer for case (b)\n",
+    "exact = (x + y)**6\n",
+    "print(\"Analytical answer:\", exact)\n",
+    "print(\"Absolute difference:\", abs(f0 - f1))\n",
+    "print(\"Relative error of expanded form:\", abs(f1 - exact)/abs(exact))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b1257bda-38a7-422a-b3f7-7654588b5c4e",
+   "metadata": {},
+   "source": [
+    "EX 03.2\n",
+    "1-set variables\n",
+    "2- calculate f0\n",
+    "3- calculate f1\n",
+    "4-Print and compare the results\n",
+    "5-repeat for new variables\n",
+    "6-print analytical answer -> reference correct answer\n",
+    "7-absolute difference between results\n",
+    "8-relative error -> accuracy\n",
+    "\n",
+    "mistakes\n",
+    "can use \\n to make a space"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "e8a21d9c-4898-4708-8dd0-8df9750e168d",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "x = 10000000.0\n",
+      "Original: -19884107.85185185\n",
+      "Rewritten: -19999999.999999948\n",
+      "\n",
+      "x = 1000000000.0\n",
+      "Original: division by zero\n",
+      "Rewritten: -2000000000.0\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "import math\n",
+    "\n",
+    "for x in [1e7, 1e9]:\n",
+    "    print(\"x =\", x)\n",
+    "\n",
+    "    try:\n",
+    "        f0 = 1 / (math.sqrt(x**2 - 1) - x)\n",
+    "        print(\"Original:\", f0)\n",
+    "    except ZeroDivisionError:\n",
+    "        print(\"Original: division by zero\")\n",
+    "\n",
+    "    f1 = -(math.sqrt(x**2 - 1) + x)\n",
+    "    print(\"Rewritten:\", f1)\n",
+    "    print()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "638bc508-2f3f-4c0d-8818-a678940a723e",
+   "metadata": {},
+   "source": [
+    "EX 03.3\n",
+    "1- import math to use sqrt\n",
+    "2- for loop \n",
+    "3-calculate f0\n",
+    "4- calculate f1\n",
+    "5-.print results\n",
+    "6-print a blank line between each value of x\n",
+    "\n",
+    "mistakes\n",
+    "set values for loop in [ ]\n",
+    "check for dividing by 0"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

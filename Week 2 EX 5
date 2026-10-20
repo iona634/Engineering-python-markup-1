@@ -1,0 +1,191 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "222f527d-cd64-4498-a01c-ac294bc8aa9c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Number 1 : 9874 rolls; proportion = 0.16456666666666667\n",
+      "Number 2 : 10007 rolls; proportion = 0.16678333333333334\n",
+      "Number 3 : 9997 rolls; proportion = 0.16661666666666666\n",
+      "Number 4 : 10021 rolls; proportion = 0.16701666666666667\n",
+      "Number 5 : 10194 rolls; proportion = 0.1699\n",
+      "Number 6 : 9907 rolls; proportion = 0.16511666666666666\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "import random\n",
+    "\n",
+    "# (a) Dice roll function\n",
+    "def dice_roll(n):\n",
+    "    return random.randint(1, n)\n",
+    "\n",
+    "\n",
+    "# Tests to check the dice roll gives a valid result\n",
+    "for n in range(1, 20):\n",
+    "    for j in range(100):\n",
+    "        value = dice_roll(n)\n",
+    "        assert value >= 1 and value <= n\n",
+    "\n",
+    "\n",
+    "# (b) Test for fairness of a six-sided die\n",
+    "rolls = 60000\n",
+    "counts = [0] * 6\n",
+    "\n",
+    "for j in range(rolls):\n",
+    "    value = dice_roll(6)\n",
+    "    counts[value - 1] += 1\n",
+    "\n",
+    "for i in range(6):\n",
+    "    print(\"Number\", i + 1, \":\", counts[i],\n",
+    "          \"rolls; proportion =\", counts[i] / rolls)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "28a07db6-a032-43bb-b2e5-c40ec692e4dc",
+   "metadata": {},
+   "source": [
+    "EX 05.1\n",
+    "1- Import the random module using so Python can generate random numbers.\n",
+    "2-Define the function \n",
+    "3- Generate a random integer\n",
+    "4-Return the result using \n",
+    "5-Test the function using two for loops. The outer loop tests dice with 1 to 19 sides, and the inner loop rolls each dice 100 times\n",
+    "6-Check the result -> every result is between 1 and n\n",
+    "7-Set the number of rolls to 60000\n",
+    "8-Create six counters using -> Each counter records how many times one dice face appears.\n",
+    "9- Roll the dice 60,000 times \n",
+    "10-Update the correct counter\n",
+    "11-Print the results using another for loop\n",
+    "12-Check fairness proportion should be approximately 0.1667\n",
+    "\n",
+    "mistakes\n",
+    " Subtract 1 because Python list indexes start at 0 -> value-1\n",
+    " import random for random number generators\n",
+    " counts = [0] *6 to make 6 counters starting at 0\n",
+    " i+1 because list indexes start at 0"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "b237a63e-232e-4c75-a9a5-bce074475425",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Question 1\n",
+      "Estimated variance: 8.99245981414052\n",
+      "Expected variance: 9.0\n",
+      "\n",
+      "Question 2\n",
+      "My variance estimate: 4.003910253910254\n",
+      "statistics.variance: 3.996648806285125\n",
+      "Expected variance: 4.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "import random\n",
+    "import statistics\n",
+    "\n",
+    "# Function to estimate variance\n",
+    "def estimate_variance(x):\n",
+    "    n = len(x)\n",
+    "    mean = sum(x) / n\n",
+    "    mean_square = sum(value**2 for value in x) / n\n",
+    "\n",
+    "    variance = (mean_square - mean**2) * n / (n - 1)\n",
+    "\n",
+    "    return variance\n",
+    "\n",
+    "\n",
+    "# Question 1: Mean 10, standard deviation 3\n",
+    "random.seed(\"im634\")\n",
+    "\n",
+    "mu = 10.0\n",
+    "sigma = 3.0\n",
+    "N = 1_000_000\n",
+    "\n",
+    "x = [random.gauss(mu, sigma) for i in range(N)]\n",
+    "\n",
+    "print(\"Question 1\")\n",
+    "print(\"Estimated variance:\", estimate_variance(x))\n",
+    "print(\"Expected variance:\", sigma**2)\n",
+    "\n",
+    "\n",
+    "# Question 2: Mean 5 million, standard deviation 2\n",
+    "random.seed(\"im634\")\n",
+    "\n",
+    "mu = 5e6\n",
+    "sigma = 2.0\n",
+    "N = 1_000_000\n",
+    "\n",
+    "x = [random.gauss(mu, sigma) for i in range(N)]\n",
+    "\n",
+    "my_variance = estimate_variance(x)\n",
+    "python_variance = statistics.variance(x)\n",
+    "\n",
+    "print()\n",
+    "print(\"Question 2\")\n",
+    "print(\"My variance estimate:\", my_variance)\n",
+    "print(\"statistics.variance:\", python_variance)\n",
+    "print(\"Expected variance:\", sigma**2)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "89a16bed-7440-4154-91d1-baea1b162c45",
+   "metadata": {},
+   "source": [
+    "EX 05.2\n",
+    "1-Import statistics\n",
+    "2- import random\n",
+    "3- define function\n",
+    "4-calculate summary stats\n",
+    "5- return\n",
+    "6-set the seed\n",
+    "7-values for mean standard deviation and N\n",
+    "8- normal distribution\n",
+    "9-create variables\n",
+    "10- print results\n",
+    "\n",
+    "mistakes\n",
+    "import statistics to use statistics.variance\n",
+    "import random for random.gauss"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

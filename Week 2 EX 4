@@ -1,0 +1,303 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "e0ac6e4b-69cf-42f3-a3b1-68bcf0ba4d4c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "def is_even(x):\n",
+    "    return x % 2 == 0\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "8dc39843-e35c-4867-ba1c-ae793acaec14",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "## tests ##\n",
+    "assert is_even(0) == True\n",
+    "assert is_even(101) == False\n",
+    "assert is_even(982) == True\n",
+    "assert is_even(-5) == False\n",
+    "assert is_even(-8) == True\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4c236558-c853-4d2e-b487-c7439884faf9",
+   "metadata": {},
+   "source": [
+    "EX 04.1\n",
+    "1- define function\n",
+    "2-check remainder is 0\n",
+    "3- assert == to give true or false"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "764b94b5-6b6d-4d71-aa5f-f210f09e0c18",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "5.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "import math\n",
+    "\n",
+    "def magnitude(x, y, z=0.0):\n",
+    "    return math.sqrt(x**2 + y**2 + z**2)\n",
+    "print(magnitude(3, 4))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "013b4459-0397-4c62-837b-734bb8255a4b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "## tests ##\n",
+    "assert math.isclose(magnitude(3, 4), 5.0)\n",
+    "assert math.isclose(magnitude(4, 3), 5.0)\n",
+    "assert math.isclose(magnitude(4, 3, 0.0), 5.0)\n",
+    "assert math.isclose(magnitude(4, 0.0, 3.0), 5.0)\n",
+    "assert math.isclose(magnitude(3, 4, 4), 6.403124237)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "69954781-4628-4475-a192-9aaec28ec7a3",
+   "metadata": {},
+   "source": [
+    "EX 04.\n",
+    "1-import math to use magnitude\n",
+    "2-define function\n",
+    "3-return value\n",
+    "4- math.isclose checks if the answer is sufficiently close to the correcr answer\n",
+    "\n",
+    "mistakes \n",
+    "z= 0.0 as a default value if no z value given\n",
+    "assert checks if they are true and continues if they are"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "b90b5b26-7b8f-45f5-887a-343506707b2c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "def area(x0, y0, x1, y1, x2, y2):\n",
+    "    return abs(x0*(y1-y2) + x1*(y2-y0) + x2*(y0-y1)) / 2\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "06d5db5d-95d9-4265-a204-2af9922a2a1c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "## tests ##\n",
+    "x0, y0 = 0.0, 0.0\n",
+    "x1, y1 = 0.0, 2.0\n",
+    "x2, y2 = 3.0, 0.0\n",
+    "\n",
+    "A = area(x0, y0, x1, y1, x2, y2)\n",
+    "\n",
+    "assert math.isclose(A, 3.0)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "32efbef1-ae78-483d-bf06-7ee870350eba",
+   "metadata": {},
+   "source": [
+    "EX 04.3\n",
+    "1-define function \n",
+    "2-return formula\n",
+    "3-print result\n",
+    "\n",
+    "mistakes \n",
+    "coordinates within brackets beside area\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "cca6e4b6-4925-42e8-85fb-4e79df82fbde",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Factorial of 5: 120\n",
+      "Reference value of factorial of 5: 120\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def factorial(n):\n",
+    "    if n == 0:\n",
+    "        return 1\n",
+    "    else:\n",
+    "        return n * factorial(n - 1)\n",
+    "\n",
+    "import math\n",
+    "\n",
+    "print(\"Factorial of 5:\", factorial(5))\n",
+    "print(\"Reference value of factorial of 5:\", math.factorial(5))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "b396c1e4-e144-4785-9c73-9bfc7cf6260b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "## tests ##\n",
+    "assert factorial(0) == 1\n",
+    "assert factorial(1) == 1\n",
+    "assert factorial(2) == 2\n",
+    "assert factorial(5) == 120\n",
+    "\n",
+    "import math\n",
+    "assert factorial(32) == math.factorial(32)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d2c672d2-ce4c-4523-80b9-f4e51b73c088",
+   "metadata": {},
+   "source": [
+    "EX 04.4\n",
+    "1- define function\n",
+    "2- if 0\n",
+    "3-else return formula\n",
+    "4-import math to use math.factorial\n",
+    "\n",
+    "mistakes\n",
+    "remember to include 0! =1\n",
+    "need to return n*factorial(n-1) cant just do factorial(n) \n",
+    ": after else\n",
+    "math.factorial is different to the function factorial"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "bced0b3e-3493-4c43-b021-fe7342355667",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Approximate root: 4.0\n",
+      "Function value: 0.0\n",
+      "Number of iterations: 1\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def f(x):\n",
+    "    return x - 4\n",
+    "\n",
+    "def compute_root(f, x0, x1, tol, max_it):\n",
+    "    if f(x0) * f(x1) > 0:\n",
+    "        raise ValueError(\"The interval must bracket a root\")\n",
+    "\n",
+    "    num_it = 0\n",
+    "\n",
+    "    while num_it < max_it:\n",
+    "        x = (x0 + x1) / 2\n",
+    "        f_x = f(x)\n",
+    "        num_it = num_it + 1\n",
+    "\n",
+    "        if abs(f_x) < tol:\n",
+    "            return x, f_x, num_it\n",
+    "\n",
+    "        if f(x0) * f_x < 0:\n",
+    "            x1 = x\n",
+    "        else:\n",
+    "            x0 = x\n",
+    "\n",
+    "    return x, f_x, num_it\n",
+    "\n",
+    "x, f_x, num_it = compute_root(f, x0=0, x1=8,\n",
+    "                              tol=1.0e-6, max_it=1000)\n",
+    "\n",
+    "print(\"Approximate root:\", x)\n",
+    "print(\"Function value:\", f_x)\n",
+    "print(\"Number of iterations:\", num_it)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5cdf5a48-89c9-4ef8-a47c-ea8734f75023",
+   "metadata": {},
+   "source": [
+    "EX 04.5\n",
+    "1-Define the function -> returns x-4\n",
+    "2- Define the root-finding function-> takes a function, a starting interval, a tolerance and a maximum number of iterations\n",
+    "3-Check the interval-> whether the function has the same sign at both endpoints. If it does-> raise error\n",
+    "4- Set the iteration counter-> starts counting iterations from zero\n",
+    "5-Start the loop->repeats the calculation until the maximum number of iterations is reached\n",
+    "6-Calculate the midpoint\n",
+    "7-Evaluate the function -> value at midpoint\n",
+    "8-Increase the counter of iterations\n",
+    "9-Check the accuracy-> whether the function value is close enough to zero. If it is-> returns the approximate root, function value and number of iterations\n",
+    "10-Update the interval-> keeps the half of the interval that brackets the root\n",
+    "11-Return after the loop-> If the maximum number of iterations is reached without meeting the tolerance-> returns latest estimate\n",
+    "12- Call the function:\n",
+    "13- print results\n",
+    "\n",
+    "mistakes\n",
+    "num_it =num_it +1 inside the loop"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

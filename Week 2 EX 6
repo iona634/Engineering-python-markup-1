@@ -1,0 +1,296 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "4bbcc152-b46c-47d7-a16f-ff6f08b21c45",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Triangle area: 4.5\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def triangle_area(vertices):\n",
+    "    # Check that there are exactly 3 vertices\n",
+    "    if len(vertices) != 3:\n",
+    "        raise ValueError(\"A triangle must have 3 vertices\")\n",
+    "\n",
+    "    # Check that each vertex has 2 coordinates\n",
+    "    for vertex in vertices:\n",
+    "        if len(vertex) != 2:\n",
+    "            raise ValueError(\"Each vertex must have 2 coordinates\")\n",
+    "\n",
+    "    # Extract the coordinates\n",
+    "    x1, y1 = vertices[0]\n",
+    "    x2, y2 = vertices[1]\n",
+    "    x3, y3 = vertices[2]\n",
+    "\n",
+    "    # Calculate the area\n",
+    "    area = abs(x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2)) / 2\n",
+    "\n",
+    "    return area\n",
+    "\n",
+    "\n",
+    "# Test the function\n",
+    "triangle = [(7, 0), (4, 0), (0, 3)]\n",
+    "\n",
+    "print(\"Triangle area:\", triangle_area(triangle))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b9f27409-49c7-43fe-ba24-aed32cebef29",
+   "metadata": {},
+   "source": [
+    "EX 06.1\n",
+    "\n",
+    "1- define the function\n",
+    "2-check number of vertices\n",
+    "3-check each vertex size\n",
+    "4-extract the coordinates\n",
+    "5- area formula\n",
+    "6-return area\n",
+    "7- test function and print the result\n",
+    "\n",
+    "mistakes\n",
+    ": after def\n",
+    "check length of vertices to ensure there's three coords for a triangle\n",
+    "list starts at 0 not 1\n",
+    "use abs to avoid a negative area\n",
+    "(triangle) is needed to pass the triangle variable into the triangle area function\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "97a5f834-6f60-4e4d-b9fc-5d59012ee7ea",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Rectangle area: 12.0\n",
+      "Triangle area: 6.0\n",
+      "Square area: 4.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def polygon_area(vertices):\n",
+    "    # Check that there are at least 3 vertices\n",
+    "    if len(vertices) < 3:\n",
+    "        raise ValueError(\"A polygon must have at least 3 vertices\")\n",
+    "\n",
+    "    area = 0\n",
+    "    n = len(vertices)\n",
+    "\n",
+    "    for i in range(n):\n",
+    "        x1, y1 = vertices[i]\n",
+    "        x2, y2 = vertices[(i + 1) % n]\n",
+    "\n",
+    "        area += x1 * y2 - x2 * y1\n",
+    "\n",
+    "    return abs(area) / 2\n",
+    "\n",
+    "\n",
+    "# Test 1: Rectangle (not at the origin)\n",
+    "rectangle = [(2, 2), (6, 2), (6, 5), (2, 5)]\n",
+    "print(\"Rectangle area:\", polygon_area(rectangle))\n",
+    "\n",
+    "# Test 2: Triangle (not at the origin)\n",
+    "triangle = [(1, 1), (5, 1), (1, 4)]\n",
+    "print(\"Triangle area:\", polygon_area(triangle))\n",
+    "\n",
+    "# Test 3: Square\n",
+    "square = [(2, 2), (4, 2), (4, 4), (2, 4)]\n",
+    "print(\"Square area:\", polygon_area(square))\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e297f258-4844-4e57-b8f9-d8aabe86005f",
+   "metadata": {},
+   "source": [
+    "EX 06.2\n",
+    "1- define the function\n",
+    "2-check there are atleast three vertices\n",
+    "3- set up the area and vertex count\n",
+    "4- loop through every vertex\n",
+    "5- get the current and next coordinates\n",
+    "6- add to the running total\n",
+    "7-calculate and return the area\n",
+    "8-test the function\n",
+    "\n",
+    "mistakes\n",
+    "area=0 to start a running total"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "23685304-df55-4231-b87b-d3eedee8bf4c",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Sum of vectors: [-2, 11.3, -20, 8]\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "def sum_vector(x, y):\n",
+    "    \"\"\"Return sum of two vectors\"\"\"\n",
+    "\n",
+    "    # Check that the vectors have the same size\n",
+    "    if len(x) != len(y):\n",
+    "        print(\"Warning: Vector sizes do not match.\")\n",
+    "        print(\"First vector length:\", len(x))\n",
+    "        print(\"Second vector length:\", len(y))\n",
+    "        return None\n",
+    "\n",
+    "    # Create a list of zeros\n",
+    "    n = len(x)\n",
+    "    z = [0] * n\n",
+    "\n",
+    "    # Add vectors\n",
+    "    for i in range(n):\n",
+    "        z[i] = x[i] + y[i]\n",
+    "\n",
+    "    return z\n",
+    "\n",
+    "# tests ##\n",
+    "a = [0, 4.3, -5, 7]\n",
+    "b = [-2, 7, -15, 1]\n",
+    "\n",
+    "c = sum_vector(a, b)\n",
+    "\n",
+    "assert c == [-2, 11.3, -20, 8]\n",
+    "\n",
+    "print(\"Sum of vectors:\", c)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "31984725-9cd6-4ad5-a3c9-f221bb8e18ea",
+   "metadata": {},
+   "source": [
+    "EX 06.3\n",
+    "1-Define the function using def \n",
+    "2-Check the vector lengths \n",
+    "3-Print a warning if the vectors have different lengths\n",
+    "4-Return None to stop the function if the lengths do not match.\n",
+    "5-Count the elements using n = len(x).\n",
+    "6-Create a list of zeros \n",
+    "7-add vectors\n",
+    "8- return z\n",
+    "9-test\n",
+    "10-print result\n",
+    "\n",
+    "mistakes\n",
+    "need to make a list of 0s to create a place to store the vector"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "0f992d1a-ecad-418b-a38c-1574bfe8d9f2",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dictionary of abbreviations and college names:\n",
+      "{'CHR': \"Christ's College\", 'CHU': 'Churchill College', 'CL': 'Clare College', 'CC': 'Corpus Christi College', 'DOW': 'Downing College', 'EM': 'Emmanuel College', 'JE': 'Jesus College', 'K': \"King's College\", 'PEM': 'Pembroke College', 'T': 'Trinity College'}\n",
+      "\n",
+      "College abbreviations in alphabetical order:\n",
+      "['CC', 'CHR', 'CHU', 'CL', 'DOW', 'EM', 'JE', 'K', 'PEM', 'T']\n"
+     ]
+    }
+   ],
+   "source": [
+    "\n",
+    "# Dictionary: college name -> abbreviation\n",
+    "colleges = {\n",
+    "    \"Christ's College\": \"CHR\",\n",
+    "    \"Churchill College\": \"CHU\",\n",
+    "    \"Clare College\": \"CL\",\n",
+    "    \"Corpus Christi College\": \"CC\",\n",
+    "    \"Downing College\": \"DOW\",\n",
+    "    \"Emmanuel College\": \"EM\",\n",
+    "    \"Jesus College\": \"JE\",\n",
+    "    \"King's College\": \"K\",\n",
+    "    \"Pembroke College\": \"PEM\",\n",
+    "    \"Trinity College\": \"T\"\n",
+    "}\n",
+    "\n",
+    "# 1. Create a dictionary: abbreviation -> college name  reversed\n",
+    "abbreviations = {}\n",
+    "\n",
+    "for name, abbreviation in colleges.items():\n",
+    "    abbreviations[abbreviation] = name\n",
+    "\n",
+    "print(\"Dictionary of abbreviations and college names:\")\n",
+    "print(abbreviations)\n",
+    "\n",
+    "# 2. Create a sorted list of abbreviations\n",
+    "sorted_abbreviations = sorted(colleges.values())\n",
+    "\n",
+    "print(\"\\nCollege abbreviations in alphabetical order:\")\n",
+    "print(sorted_abbreviations)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "752dbacd-ed00-4b80-9063-807c5a29b428",
+   "metadata": {},
+   "source": [
+    "EX 06.4\n",
+    "1-Create a dictionary with colleges and their abbreviations\n",
+    "2-Create an empty dictionary called abbreviations using {}.\n",
+    "3-Loop through the original dictionary\n",
+    "4-Reverse the key and value by storing each college name as the value and its abbreviation as the key\n",
+    "5-Print the new reversed dictionary\n",
+    "6-Sort the abbreviations alphabetically using sorted\n",
+    "7-Store the sorted list\n",
+    "8-Print the sorted abbreviations\n",
+    "\n",
+    "mistakes\n",
+    "need to add key and value to new dictionary inside loop\n",
+    "dictionary (key)=value"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.8"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
